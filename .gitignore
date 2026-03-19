@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Environment — NEVER commit this
+.env
+.env.local
+
+# Node
+node_modules/
+dist/
+.next/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Local data cache
+backend/data/
+*.jsonl
+# Logs
+*.log
+
+# Vercel (Local CLI cache)
+.vercel/
+
+# React/Vite extra environment files
+.env.*.local
+
+# Python testing cache (if you write tests later)
+.pytest_cache/
