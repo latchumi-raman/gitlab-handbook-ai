@@ -1,0 +1,40 @@
+# Render Blueprint — defines our backend service declaratively.
+# Render reads this file automatically when you connect the repo.
+
+services:
+  - type: web
+    name: gitlab-handbook-ai-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+
+    # Free tier — enough for our traffic
+    plan: free
+
+    # Health check path — Render monitors this
+    healthCheckPath: /api/v1/ping
+
+    # Auto-deploy when main branch is pushed
+    autoDeploy: true
+    branch: main
+
+    # Environment variables — values set in Render dashboard
+    # DO NOT put actual secrets here — this file is public
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false          # means: set manually in Render dashboard
+
+      - key: SUPABASE_URL
+        sync: false
+
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+
+      - key: ALLOWED_ORIGINS
+        sync: false          # set to your Vercel URL after deploy
+
+      - key: LOG_LEVEL
+        value: INFO
+
+      - key: API_HOST
+        value: 0.0.0.0
